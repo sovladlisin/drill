@@ -1,0 +1,135 @@
+
+.tip-left {
+    display: grid;
+    grid-template-columns: 100px auto;
+    width: 1100px;
+    margin: 0 auto;
+    height: 180px;
+  }
+  .home-tips i {
+    font-size: 53px;
+    color: #0779a1;
+    display: block;
+    margin: auto 0;
+  }
+  .home-tips p {
+    margin: auto 0;
+    line-height: 22px;
+    font-weight: 500;
+    color: #181818;
+    width: 90%;
+  }
+  .tip-right {
+    display: grid;
+    grid-template-columns: 100px auto ;
+    width: 1100px;
+    margin: 0 auto;
+    height: 180px;
+    border-top: 1px solid #18181840;
+    border-bottom: 1px solid #18181840;
+  }
+  
+.home-title-card-outer {
+    height: 600px;
+    background: #0779a1;
+    position: relative;
+  }
+  .home-title-card > h1 {
+    font-size: 42px;
+    font-weight: 700;
+    color: white;
+    padding-top: 80px;
+    line-height: 50px;
+  }
+  .home-title-card {
+    width: 1100px;
+    margin: 0 auto;
+  }
+  .home-title-card > p {
+    color: white;
+    margin-top: 60px;
+    width: 55%;
+    line-height: 23px;
+    font-size: 14pt;
+    font-weight: 400;
+  }
+
+  .home-title {
+    height: 150px;
+    line-height: 150px;
+    font-size: 40px;
+    margin: 0 auto;
+    width: 1100px;
+  }
+  
+.home-gears {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    pointer-events: none;
+  }
+  
+.home-title-card > a {
+    border: 1px solid #FFF;
+    box-sizing: border-box;
+    width: 230px;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 40px;
+    display: block;
+    text-align: center;
+    color: white;
+  }
+  .home-title-card > a:hover {
+    background: white;
+    color: #0779a1;
+    transition: 0.2s;
+  }
+  
+.home-title-blue-outer {
+    height: 150px;
+    width: 100%;
+    background: #0779a1;
+  }
+  .home-title-blue {
+    height: 150px;
+    line-height: 150px;
+    font-size: 40px;
+    margin: 0 auto;
+    width: 1100px;
+    color: white;
+  }
+  .history-outer {
+    width: 100%;
+    background: #0779a1;
+  }
+  .history {
+    height: 300px;
+    margin: 0 auto;
+    width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    justify-content: center;
+  }
+  .history > div {
+    background: #ffffff63;
+    height: 165px;
+    margin: auto 0;
+    position: relative;
+  }
+  
+.history p {
+    position: absolute;
+    top: -25px;
+    left: 0;
+    color: white;
+  }
+  
+.home-tips {
+    margin-top: -25px;
+    margin-bottom: 25px;
+  }
