@@ -9,6 +9,7 @@ import './src/static/css/header.css'
 import './src/static/css/home.css'
 import './src/static/css/about.css'
 import './src/static/css/service.css'
+import './src/static/css/service-window.css'
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 

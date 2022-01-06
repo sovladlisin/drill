@@ -29,3 +29,7 @@ export const handleError = (err): TAlert => {
     }
     return { type: err.response.status, message }
 }
+
+export const getImage = (url: string) => {
+    return SERVER_DOMAIN.slice(0, -1) + url
+}

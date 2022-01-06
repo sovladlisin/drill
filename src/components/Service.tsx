@@ -1,4 +1,10 @@
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getServices } from '../actions/service/service';
+import { TService } from '../actions/service/types';
+import { RootStore } from '../store';
+import { getImage } from '../utils';
+import ServiceWindow from './ServiceWindow';
 
 interface IServiceProps {
 }
@@ -6,66 +12,13 @@ interface IServiceProps {
 const Service: React.FunctionComponent<IServiceProps> = (props) => {
     const [search, setSearch] = React.useState('')
 
-    const data = [
-        {
-            id: 1,
-            title: 'Пример 1',
-            price: '1000 Р.',
-            desc: 'Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 ',
-            img: '',
-        },
-        {
-            id: 2,
-            title: 'Пример 1',
-            price: '1000 Р.',
-            desc: 'Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 ',
-            img: '',
-        },
-        {
-            id: 3,
-            title: 'Пример 1',
-            price: '1000 Р.',
-            desc: 'Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 ',
-            img: '',
-        },
-        {
-            id: 4,
-            title: 'Пример 1',
-            price: '1000 Р.',
-            desc: 'Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 ',
-            img: '',
-        },
-        {
-            id: 5,
-            title: 'Пример 1',
-            price: '1000 Р.',
-            desc: 'Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 ',
-            img: '',
-        },
-        {
-            id: 6,
-            title: 'Пример 1',
-            price: '1000 Р.',
-            desc: 'Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 ',
-            img: '',
-        },
-        {
-            id: 7,
-            title: 'Пример 1',
-            price: '1000 Р.',
-            desc: 'Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 ',
-            img: '',
-        },
-        {
-            id: 8,
-            title: 'Пример 1',
-            price: '1000 Р.',
-            desc: 'Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 Пример 1 ',
-            img: '',
-        },
+    const serviceState = useSelector((state: RootStore) => state.services)
+    const dispatch = useDispatch()
+    React.useEffect(() => {
+        dispatch(getServices())
+    }, [])
 
-
-    ]
+    const [selectedService, setSelectedService] = React.useState<TService>(null)
 
     return <>
         <div className='sub-page-container'>
@@ -75,15 +28,26 @@ const Service: React.FunctionComponent<IServiceProps> = (props) => {
                 <input value={search} onChange={e => setSearch(e.target.value)}></input>
             </div>
             <div className='service-items-container'>
-                {data.map(d => {
-                    return <div className='service-item' onClick={_ => { }}>
-                        <p className='service-item-title'>{d.title}</p>
-                        <img src={d.img}></img>
-                        <p className='service-item-price'>{d.price}</p>
-                    </div>
-                })}
+                {serviceState.services && serviceState.services
+                    .filter(d => JSON.stringify(d).toLocaleLowerCase().includes(search.toLocaleLowerCase())).length === 0 && <div className='service-empty'>
+
+                        <i className='fas fa-times'></i>
+                        <p>Поиск не дал результата</p>
+
+                    </div>}
+                {serviceState.services && serviceState.services
+                    .filter(d => JSON.stringify(d).toLocaleLowerCase().includes(search.toLocaleLowerCase()))
+                    .map(d => {
+                        return <div className='service-item' onClick={_ => setSelectedService(d)}>
+                            <p className='service-item-title'>{d.title}</p>
+                            <img src={getImage(d.img)}></img>
+                            <p className='service-item-price'>{d.price}</p>
+                        </div>
+                    })}
             </div>
         </div>
+
+        {selectedService && <ServiceWindow service={selectedService} onClose={() => setSelectedService(null)} />}
     </>;
 };
 

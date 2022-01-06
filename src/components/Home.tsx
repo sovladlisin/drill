@@ -3,17 +3,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { RootStore } from '../store';
 import BACK from '../static/images/back.png'
+import { getHistory } from '../actions/service/service';
+import { getImage } from '../utils';
+import { THistory } from '../actions/service/types';
+import HistoryWindow from './HistoryWindow';
 
 interface IHomeProps {
 }
 
 const Home: React.FunctionComponent<IHomeProps> = (props) => {
+    const dispatch = useDispatch()
+    React.useEffect(() => {
+        dispatch(getHistory())
+    }, [])
+    const historyState = useSelector((state: RootStore) => state.services.history)
+
+    const [selectedHistory, setSelectedHistory] = React.useState<THistory>(null)
     return <>
         <div className='home-title-card-outer'>
             <div className='home-title-card'>
                 <h1>Многопрофильная компания <br></br> "ООО ИНЖЕНЕР-ОМСК"</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                <Link to=''>ПОДРОБНЕЕ</Link>
+                <Link to='/about'>ПОДРОБНЕЕ</Link>
             </div>
             <img className='home-gears' src={BACK}></img>
         </div>
@@ -41,22 +52,17 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
 
         <div className='history-outer'>
             <div className='history'>
-                <div>
-                    <p>Пример 1</p>
-                </div>
-                <div>
-                    <p>Пример 2</p>
-                </div>
-                <div>
-                    <p>Пример 3</p>
-                </div>
-                <div>
-                    <p>Пример 4</p>
-                </div>
+                {historyState && historyState.map(h => {
+                    return <div className='history-item' onClick={_ => setSelectedHistory(h)}>
+                        <p>{h.title}</p>
+                        <img src={getImage(h.img)}></img>
+                    </div>
+                })}
             </div>
         </div>
 
 
+        {selectedHistory && <HistoryWindow history={selectedHistory} onClose={() => setSelectedHistory(null)} />}
     </>
 };
 

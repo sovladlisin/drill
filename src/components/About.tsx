@@ -24,7 +24,7 @@ const About: React.FunctionComponent<IAboutProps> = (props) => {
                 <p>golosov111@list.ru</p>
             </div>
             <div className='contacts-photo'>
-                <img></img>
+                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A6484355e73df0f36c1824f506a10e9940457004a8c0c229415a8be7dc8684014&amp;source=constructor" width="445" height="350" frameBorder="0"></iframe>
             </div>
         </div>
         <h2 className='sub-page-title'>Сертификаты и лицензии</h2>
