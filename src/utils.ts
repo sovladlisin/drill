@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 import { TAlert } from "./actions/alerts/types"
 export const HOST = window.location.host.includes('local') ? "http://" + window.location.host + '/' : "https://" + window.location.host + '/'
 
-export const SERVER_DOMAIN = window.location.host.includes('local') ? 'http://127.0.0.1:8000/' : 'https://neoback.herokuapp.com/'
-export const SERVER_URL = window.location.host.includes('local') ? 'http://127.0.0.1:8000/api/' : 'https://neoback.herokuapp.com/api/'
-export const SERVER_URL_AUTH = window.location.host.includes('local') ? 'http://127.0.0.1:8000/auth/' : 'https://neoback.herokuapp.com/auth/'
+export const SERVER_DOMAIN = window.location.host.includes('local') ? 'http://127.0.0.1:8000/' : 'https://engineer-omsk-back.herokuapp.com/'
+export const SERVER_URL = window.location.host.includes('local') ? 'http://127.0.0.1:8000/api/' : 'https://engineer-omsk-back.herokuapp.com/api/'
+export const SERVER_URL_AUTH = window.location.host.includes('local') ? 'http://127.0.0.1:8000/auth/' : 'https://engineer-omsk-back.herokuapp.com/auth/'
 
 // export const SERVER_DOMAIN = 'https://neoback.herokuapp.com/'
 // export const SERVER_URL = 'https://neoback.herokuapp.com/api/'
